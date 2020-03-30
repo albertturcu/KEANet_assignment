@@ -12,13 +12,13 @@ class Purchase {
 
   public increasePhoneLines() {
     this.phoneLines++;
-    this._price += this.phoneLines * 150;
+    this._price += 150;
     return this._price;
   }
 
   public decreasePhoneLines() {
     this.phoneLines--;
-    this._price -= this.phoneLines * 150;
+    this._price -= 150;
     return this._price;
   }
 
