@@ -1,4 +1,4 @@
-class Purchase {
+export default class Purchase {
   private internetConnection: boolean = false;
   private _price: number = 0;
   private phoneLines: number = 0;
