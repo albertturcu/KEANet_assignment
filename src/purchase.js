@@ -42,9 +42,6 @@ var Purchase = /** @class */ (function () {
         return this._price;
     };
     Purchase.prototype.deselectCellPhone = function (modelName) {
-        if (!this.cellPhones.includes(modelName)) {
-            throw new Error("This model has been already deselected");
-        }
         var index = this.cellPhones.indexOf(modelName);
         this.cellPhones.splice(index, 1);
         switch (modelName) {

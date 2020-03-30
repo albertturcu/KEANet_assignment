@@ -38,7 +38,7 @@
 
       <br />
       Total price:
-      <span class="totalPrice">0</span>
+      <span class="totalPrice"></span>
       DKK
       <br />
       <input type="submit" value="Buy" />
@@ -47,7 +47,6 @@
     <script src="purchase.js" type="text/javascript"></script>
     <script>
       let purchase = new Purchase();
-      let phoneLines = document.querySelector('#txtPhoneLines').value;
 
       document.querySelector(".totalPrice").textContent = `${purchase.price}`;
 
@@ -63,19 +62,29 @@
 
       function selectCellPhone() {
         let elementSelection = document.querySelector('#txtCellPhones');
-        // let option = elementSelection[elementSelection.selectedIndex];
-        purchase.selectCellPhone(elementSelection.option);
-        document.querySelector('#txtChosenCellPhones').add(elementSelection.selectedOptions[0]);
-        document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+        let option = elementSelection[elementSelection.selectedIndex];
+
+        if(option !== undefined){
+          purchase.selectCellPhone(elementSelection.value);
+          document.querySelector('#txtChosenCellPhones').add(option);
+          document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+        } else {
+          alert('Please select a cell phone!')
+        }
       }
 
       function deselectCellPhone() {
         let elementSelection = document.querySelector('#txtChosenCellPhones');
         let option = elementSelection[elementSelection.selectedIndex];
-        purchase.deselectCellPhone(elementSelection.value);
-        document.querySelector('#txtChosenCellPhones').removeChild(option);
-        document.querySelector('#txtCellPhones').add(option);
-        document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+
+        if(option !== undefined){
+          purchase.deselectCellPhone(elementSelection.value);
+          document.querySelector('#txtChosenCellPhones').removeChild(option);
+          document.querySelector('#txtCellPhones').add(option);
+          document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+        } else {
+          alert('Please select a cell phone!')
+        }
       }
     </script>
   </body>

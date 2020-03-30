@@ -45,9 +45,6 @@ class Purchase {
   }
 
   public deselectCellPhone(modelName: string) {
-    if (!this.cellPhones.includes(modelName)) {
-      throw new Error("This model has been already deselected");
-    }
     let index = this.cellPhones.indexOf(modelName);
     this.cellPhones.splice(index, 1);
     switch (modelName) {
