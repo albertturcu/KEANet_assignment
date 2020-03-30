@@ -71,9 +71,10 @@ class Purchase {
     if (this._price === 0) {
       alert("Please select something!");
     } else {
-      alert(`Internet connection: ${this.internetConnection} \n
+      alert(`You have selected the following:\n
+             Internet connection: ${this.internetConnection} \n
              Phone lines: ${this.phoneLines} \n
-             Cell phone: ${this.cellPhones} \n
+             Cell phone: ${this.cellPhones } \n
             `);
     }
   }
