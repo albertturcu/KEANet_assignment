@@ -2,15 +2,27 @@
 <html>
   <head>
     <title>KEANet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   </head>
   <body>
     <h1>KEANet</h1>
     <div>
-      <input type="checkbox" onclick="setInternetConnection()" id="chkInternetConnection" />
+      <input
+        type="checkbox"
+        onclick="setInternetConnection()"
+        id="chkInternetConnection"
+      />
       <label for="chkInternetConnection">Internet connection</label>
       <br />
       <label for="txtPhoneLines">Phone lines</label>
-      <input type="number" id="txtPhoneLines" onclick="" value="0" min="0" max="8"/>
+      <input
+        type="number"
+        id="txtPhoneLines"
+        onclick=""
+        value="0"
+        min="0"
+        max="8"
+      />
       <br />
       <label for="cmbCellPhones">Cell phones:</label>
       <br />
@@ -26,12 +38,18 @@
             </select>
           </td>
           <td>
-            <input type="button" onclick="selectCellPhone()" value="&gt;" />
+            <input
+              class="selectCellPhone"
+              type="button"
+              onclick="selectCellPhone()"
+              value="&gt;"
+            />
             <br />
             <input type="button" onclick="deselectCellPhone()" value="&lt;" />
           </td>
           <td>
-            <select id="txtChosenCellPhones" size="5" style="width: 150px"> </select>
+            <select id="txtChosenCellPhones" size="5" style="width: 150px">
+            </select>
           </td>
         </tr>
       </table>
@@ -51,41 +69,54 @@
       document.querySelector(".totalPrice").textContent = `${purchase.price}`;
 
       function setInternetConnection() {
-        let internetConnection = document.querySelector("#chkInternetConnection").checked;
+        let internetConnection = document.querySelector(
+          "#chkInternetConnection"
+        ).checked;
         purchase.setInternetConnection(internetConnection);
         document.querySelector(".totalPrice").textContent = `${purchase.price}`;
       }
 
-      function setPhoneLines(){
-        let value = document.querySelector('#txtPhoneLines').value;
+      function setPhoneLines() {
+        let value = document.querySelector("#txtPhoneLines").value;
       }
 
       function selectCellPhone() {
-        let elementSelection = document.querySelector('#txtCellPhones');
+        let elementSelection = document.querySelector("#txtCellPhones");
         let option = elementSelection[elementSelection.selectedIndex];
 
-        if(option !== undefined){
+        if (option !== undefined) {
           purchase.selectCellPhone(elementSelection.value);
-          document.querySelector('#txtChosenCellPhones').add(option);
-          document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+          document.querySelector(
+            ".totalPrice"
+          ).textContent = `${purchase.price}`;
         } else {
-          alert('Please select a cell phone!')
+          alert("Please select a cell phone!");
         }
       }
 
       function deselectCellPhone() {
-        let elementSelection = document.querySelector('#txtChosenCellPhones');
+        let elementSelection = document.querySelector("#txtChosenCellPhones");
         let option = elementSelection[elementSelection.selectedIndex];
 
-        if(option !== undefined){
+        if (option !== undefined) {
           purchase.deselectCellPhone(elementSelection.value);
-          document.querySelector('#txtChosenCellPhones').removeChild(option);
-          document.querySelector('#txtCellPhones').add(option);
-          document.querySelector(".totalPrice").textContent = `${purchase.price}`;
+          document.querySelector("#txtChosenCellPhones").removeChild(option);
+          document.querySelector(
+            ".totalPrice"
+          ).textContent = `${purchase.price}`;
         } else {
-          alert('Please select a cell phone!')
+          alert("Please select a cell phone!");
         }
       }
+      $(function() {
+        $(".selectCellPhone").click(function() {
+          let elementSelection = document.querySelector("#txtCellPhones");
+          let option = elementSelection[elementSelection.selectedIndex];
+          $(
+            `<option value=${option.value}>` + option.text + " </option>"
+          ).appendTo($("#txtChosenCellPhones"));
+        });
+      });
     </script>
   </body>
 </html>
