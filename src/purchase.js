@@ -12,12 +12,12 @@ var Purchase = /** @class */ (function () {
     };
     Purchase.prototype.increasePhoneLines = function () {
         this.phoneLines++;
-        this._price += this.phoneLines * 150;
+        this._price += 150;
         return this._price;
     };
     Purchase.prototype.decreasePhoneLines = function () {
         this.phoneLines--;
-        this._price -= this.phoneLines * 150;
+        this._price -= 150;
         return this._price;
     };
     Purchase.prototype.selectCellPhone = function (modelName) {
