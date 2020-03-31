@@ -61,7 +61,7 @@
       <span class="totalPrice"></span>
       DKK
       <br />
-      <input type="submit" onclick="purchase.buy()" value="Buy" />
+      <input type="submit" onclick="alert(purchase.buy())" value="Buy" />
     </div>
 
     <script src="purchase.js" type="text/javascript"></script>
@@ -121,7 +121,6 @@
           var value = $qty.val();
           if (value < 8) {
             value++;
-            console.log("value:", value);
             $qty.val(value);
             purchase.increasePhoneLines();
             document.querySelector(

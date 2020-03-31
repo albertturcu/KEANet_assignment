@@ -1,8 +1,8 @@
 export class Purchase {
-  private internetConnection: boolean = false;
-  private _price: number = 0;
-  private phoneLines: number = 0;
-  private cellPhones: string[] = [];
+   private internetConnection: boolean = false;
+   private _price: number = 0;
+   private phoneLines: number = 0;
+   private cellPhones: string[] = [];
 
   public setInternetConnection(state: boolean) {
     this.internetConnection = state;
@@ -11,12 +11,18 @@ export class Purchase {
   }
 
   public increasePhoneLines() {
+    if(this.phoneLines >= 8){ 
+      return this._price;
+    }
+    
     this.phoneLines++;
     this._price += 150;
     return this._price;
   }
 
   public decreasePhoneLines() {
+    if(this.phoneLines == 0) return this._price;
+    
     this.phoneLines--;
     this._price -= 150;
     return this._price;
@@ -40,11 +46,14 @@ export class Purchase {
       case "huawei":
         this._price += 900;
         break;
+      default:
+        throw new Error('Unexpected cell phone model');
     }
     return this._price;
   }
 
   public deselectCellPhone(modelName: string) {
+    if(!this.cellPhones.includes(modelName) || !this.cellPhones.length) throw new Error('Model name not found');
     let index = this.cellPhones.indexOf(modelName);
     this.cellPhones.splice(index, 1);
     switch (modelName) {
@@ -69,13 +78,13 @@ export class Purchase {
 
   public buy() {
     if (this._price === 0) {
-      alert("Please select something!");
+      return "Please select something!";
     } else {
-      alert(`You have selected the following:\n
+      return `You have selected the following:\n
              Internet connection: ${this.internetConnection} \n
              Phone lines: ${this.phoneLines} \n
              Cell phone: ${this.cellPhones} \n
-            `);
+            `;
     }
   }
 

@@ -11,11 +11,16 @@ var Purchase = /** @class */ (function () {
         return this._price;
     };
     Purchase.prototype.increasePhoneLines = function () {
+        if (this.phoneLines >= 8) {
+            return this._price;
+        }
         this.phoneLines++;
         this._price += 150;
         return this._price;
     };
     Purchase.prototype.decreasePhoneLines = function () {
+        if (this.phoneLines == 0)
+            return this._price;
         this.phoneLines--;
         this._price -= 150;
         return this._price;
@@ -38,10 +43,14 @@ var Purchase = /** @class */ (function () {
             case "huawei":
                 this._price += 900;
                 break;
+            default:
+                throw new Error('Unexpected cell phone model');
         }
         return this._price;
     };
     Purchase.prototype.deselectCellPhone = function (modelName) {
+        if (!this.cellPhones.includes(modelName) || !this.cellPhones.length)
+            throw new Error('Model name not found');
         var index = this.cellPhones.indexOf(modelName);
         this.cellPhones.splice(index, 1);
         switch (modelName) {
@@ -65,10 +74,10 @@ var Purchase = /** @class */ (function () {
     };
     Purchase.prototype.buy = function () {
         if (this._price === 0) {
-            alert("Please select something!");
+            return "Please select something!";
         }
         else {
-            alert("You have selected the following:\n\n             Internet connection: " + this.internetConnection + " \n\n             Phone lines: " + this.phoneLines + " \n\n             Cell phone: " + this.cellPhones + " \n\n            ");
+            return "You have selected the following:\n\n             Internet connection: " + this.internetConnection + " \n\n             Phone lines: " + this.phoneLines + " \n\n             Cell phone: " + this.cellPhones + " \n\n            ";
         }
     };
     Object.defineProperty(Purchase.prototype, "price", {
