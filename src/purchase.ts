@@ -1,4 +1,4 @@
-export default class Purchase {
+export class Purchase {
   private internetConnection: boolean = false;
   private _price: number = 0;
   private phoneLines: number = 0;
@@ -74,7 +74,7 @@ export default class Purchase {
       alert(`You have selected the following:\n
              Internet connection: ${this.internetConnection} \n
              Phone lines: ${this.phoneLines} \n
-             Cell phone: ${this.cellPhones } \n
+             Cell phone: ${this.cellPhones} \n
             `);
     }
   }
