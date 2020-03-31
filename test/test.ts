@@ -19,9 +19,10 @@ describe("Increase Phone Lines", () => {
   });
   it("should return price 1200, when 8 phone lines has been selected", () => {
     var purchase = new Purchase();
-    for (let index = 0; index < 7; index++) {
-      purchase.increasePhoneLines();
+    var totalPrice = 0;
+    for (let index = 0; index < 8; index++) {
+      totalPrice = purchase.increasePhoneLines();
     }
-    assert.equal(purchase.increasePhoneLines(), 1200);
+    assert.equal(totalPrice, 1200);
   });
 });
