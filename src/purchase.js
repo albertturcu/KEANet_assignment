@@ -77,7 +77,7 @@ var Purchase = /** @class */ (function () {
             return "Please select something!";
         }
         else {
-            return "You have selected the following:\n\n             Internet connection: " + this.internetConnection + " \n\n             Phone lines: " + this.phoneLines + " \n\n             Cell phone: " + this.cellPhones + " \n\n            ";
+            return "You have selected the following:\n\n             Internet connection: " + this.internetConnection + " \n\n             Phone lines: " + this.phoneLines + " \n\n             Cell phone: " + this.cellPhones + " \n";
         }
     };
     Object.defineProperty(Purchase.prototype, "price", {
