@@ -83,8 +83,7 @@ export class Purchase {
       return `You have selected the following:\n
              Internet connection: ${this.internetConnection} \n
              Phone lines: ${this.phoneLines} \n
-             Cell phone: ${this.cellPhones} \n
-            `;
+             Cell phone: ${this.cellPhones} \n`;
     }
   }
 

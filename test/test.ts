@@ -64,7 +64,7 @@ describe('#purchase', () => {
   });
 
   describe('Select Cell phones', () => {
-    afterEach(()=>{
+    afterEach(() => {
       purchase._price = 0;
       purchase.cellPhones = []
     })
@@ -80,7 +80,7 @@ describe('#purchase', () => {
       assert.throws(() => { purchase.selectCellPhone('Unkown model name') }, 'Unexpected cell phone model');
     })
 
-    cellPhonePricesProvider.forEach(({model, price}) => {
+    cellPhonePricesProvider.forEach(({ model, price }) => {
       it(`should return price ${price}, when ${model} phone added`, () => {
         assert.equal(purchase.selectCellPhone(model), price)
       });
@@ -88,18 +88,18 @@ describe('#purchase', () => {
   });
 
   describe('Deselect Cell phones', () => {
-    afterEach(()=>{
+    afterEach(() => {
       purchase._price = 0;
       purchase.cellPhones = [];
     })
 
     it('Throws model name not found error', () => {
       cellPhonePricesProvider.forEach(({ model }) => {
-        assert.throws(() => {purchase.deselectCellPhone(model)}, 'Model name not found')
+        assert.throws(() => { purchase.deselectCellPhone(model) }, 'Model name not found')
       })
     })
 
-    cellPhonePricesProvider.forEach(({model, price}) => {
+    cellPhonePricesProvider.forEach(({ model, price }) => {
       let oldPrice: number = 0
       it(`should decrease price by ${price}, when ${model} phone removed`, () => {
         purchase.selectCellPhone(model);
@@ -108,5 +108,18 @@ describe('#purchase', () => {
       });
     })
   });
+
+  describe('Buy', () => {
+    it('should return "Please select something" if price 0', () => {
+      assert.equal(purchase.buy(), "Please select something!");
+    })
+    it('should return list of selected items', () => {
+      purchase.setInternetConnection(true)
+      purchase.increasePhoneLines();
+
+      assert.equal(purchase.buy(), "You have selected the following:\n\n             Internet connection: true \n\n             Phone lines: 1 \n\n             Cell phone:  \n"
+      );
+    })
+  })
 })
 
